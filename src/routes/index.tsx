@@ -1,38 +1,49 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
-  Building2, CalendarDays, Dumbbell, Flame, GraduationCap, Hospital, MapPin, Menu, MessageCircle,
-  PartyPopper, PawPrint, Play, ShoppingBag, ShoppingCart, Sparkles, Store, TrainFront, TreePalm,
-  TrendingUp, Trophy, Waves, Wifi, Zap, X, Car, Bath,
+  AirVent, Baby, Building2, CalendarDays, Car, DoorClosed, Droplets, Dumbbell, Fence, Flame,
+  GraduationCap, HandCoins, Hospital, KeyRound, Landmark, Leaf, Lightbulb, MapPin, Menu,
+  MessageCircle, PartyPopper, PawPrint, Percent, Play, Recycle, ShieldCheck, ShoppingBag,
+  ShoppingCart, Sparkles, Store, TrainFront, TreePalm, TrendingUp, Trophy, Users, Waves, Wifi, X, Zap,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { LeadForm } from "@/components/LeadForm";
 import hero from "@/assets/hero-facade.jpg";
 import rooftop from "@/assets/rooftop.jpg";
 import pool from "@/assets/pool.jpg";
 import mall from "@/assets/mall.jpg";
+import difAcabamentos from "@/assets/diferencial-acabamentos.png.asset.json";
+import difPadrao from "@/assets/diferencial-padrao.png.asset.json";
+import difSustentabilidade from "@/assets/diferencial-sustentabilidade.png.asset.json";
+import planta1qTipo from "@/assets/planta-1quarto-tipo.png.asset.json";
+import planta1qSuite from "@/assets/planta-1quarto-suite.png.asset.json";
+import planta1qGarden from "@/assets/planta-1quarto-garden.png.asset.json";
+import plantaDouble from "@/assets/planta-double-suite.png.asset.json";
+import plantaDoubleGarden from "@/assets/planta-double-suite-garden.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Ilha Stay Home Resort • Riva | Barra Olímpica RJ" },
-      { name: "description", content: "O 1º Home Stay com conceito resort no Parque Ilha Pura. Apartamentos de 28m² a 70m², rooftop 360° e mall integrado." },
-      { property: "og:title", content: "Ilha Stay Home Resort • Riva" },
-      { property: "og:description", content: "Breve lançamento na Barra Olímpica: home resort com rooftop 360° e shopping integrado." },
+      { title: "Ilha Stay Home Resort • Riva | Financiamento Sem Juros na Barra Olímpica RJ" },
+      { name: "description", content: "Financiamento direto com a Construtora Riva SEM JUROS. Apartamentos de 28m² a 70m², todos com varanda, rooftop 360° e mall integrado no Parque Ilha Pura." },
+      { property: "og:title", content: "Ilha Stay Home Resort • Riva — Condição Sem Juros" },
+      { property: "og:description", content: "Breve lançamento na Barra Olímpica: financiamento direto sem juros, home resort com rooftop 360° e shopping integrado." },
     ],
   }),
   component: Index,
 });
 
-const WHATSAPP = "5521999999999";
-const WA_MSG = "Olá! Gostaria de receber a apresentação completa e a tabela de abertura de vendas do Ilha Stay";
+const WHATSAPP = "5521988722552";
+const WA_MSG = "Olá! Gostaria de receber a tabela de preços oficial e a simulação sem juros do Ilha Stay Home Resort.";
+const waLink = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(WA_MSG)}`;
 const LAUNCH = new Date("2026-12-05T10:00:00-03:00").getTime();
 
 const nav = [
-  ["projeto", "O Projeto"], ["investimento", "Rentabilidade & Investimento"], ["plantas", "Plantas"],
-  ["lazer", "Lazer"], ["mall", "Mall"], ["localizacao", "Localização"],
+  ["projeto", "O Projeto"], ["financiamento", "Sem Juros"], ["plantas", "Plantas"],
+  ["diferenciais", "Diferenciais"], ["lazer", "Lazer"], ["localizacao", "Localização"], ["faq", "Dúvidas"],
 ] as const;
 
 function Index() {
@@ -44,18 +55,21 @@ function Index() {
     <div className="min-h-screen bg-background text-foreground">
       <Header onCta={openModal} menu={menu} setMenu={setMenu} />
       <Hero />
+      <Financing />
       <Investment />
       <VideoShowcase />
       <Plans onCta={openModal} />
+      <Features />
       <Leisure />
       <Mall />
       <Location />
+      <Faq />
       <Credits />
       <FinalForm />
       <Footer />
 
       <a
-        href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(WA_MSG)}`}
+        href={waLink}
         target="_blank" rel="noreferrer" aria-label="Falar no WhatsApp"
         className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-nature text-primary-foreground shadow-elegant transition-transform hover:scale-110"
       >
@@ -132,7 +146,7 @@ function Hero() {
             Venha, Viva, Fique: <span className="text-gold">O 1º Home Stay com Conceito Resort</span> no Parque Ilha Pura
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed opacity-90 sm:text-lg">
-            Apartamentos de 28m² a 70m² com varanda, rooftop 360° para a praia e Pedra da Gávea, e shopping integrado na porta de casa. O cenário perfeito para morar ou lucrar com temporada.
+            Apartamentos de 28m² a 70m², todos com varanda, rooftop 360° para a praia e Pedra da Gávea, e shopping integrado na porta de casa. O cenário perfeito para morar ou lucrar com temporada.
           </p>
           <div className="mt-8">
             <p className="mb-3 flex items-center gap-2 text-sm font-medium"><CalendarDays className="h-4 w-4 text-gold" /> Abertura Oficial de Vendas em Breve</p>
@@ -157,6 +171,45 @@ function Hero() {
   );
 }
 
+function Financing() {
+  const badges = [
+    [Percent, "Sem Juros Direto com a Construtora"],
+    [HandCoins, "Entrada Parcelada no Período de Obras"],
+    [Landmark, "Possibilidade de Uso do FGTS"],
+    [Users, "Composição de Renda entre até 3 Pessoas"],
+  ] as const;
+  return (
+    <section id="financiamento" className="relative overflow-hidden bg-primary py-20 text-primary-foreground">
+      <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-gold/10 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-gold/10 blur-3xl" />
+      <div className="relative mx-auto max-w-5xl px-5 text-center">
+        <p className="eyebrow">Oportunidade inédita</p>
+        <h2 className="mt-4 font-display text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">
+          Condição Especial de Lançamento: <span className="text-gold">Financiamento Direto com a Construtora Riva SEM JUROS</span>
+        </h2>
+        <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed opacity-85 sm:text-lg">
+          Parcelamento facilitado direto com a incorporadora com taxa zero de juros no período de obras.
+        </p>
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {badges.map(([Icon, t]) => (
+            <div key={t} className="flex flex-col items-center gap-3 rounded-2xl border border-gold/30 bg-primary-foreground/5 p-6">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-gold text-accent-foreground shadow-gold">
+                <Icon className="h-6 w-6" />
+              </span>
+              <p className="text-sm font-medium leading-snug">{t}</p>
+            </div>
+          ))}
+        </div>
+        <Button asChild variant="gold" className="mt-10 h-14 px-10 text-base">
+          <a href={waLink} target="_blank" rel="noreferrer">
+            <MessageCircle className="mr-2 h-5 w-5" /> Simular Condição Sem Juros
+          </a>
+        </Button>
+      </div>
+    </section>
+  );
+}
+
 function SectionHead({ eyebrow, title, sub, light }: { eyebrow: string; title: string; sub?: string; light?: boolean }) {
   return (
     <div className="mx-auto mb-12 max-w-3xl text-center">
@@ -175,15 +228,15 @@ function Investment() {
     [Store, "Mall integrado", "11 lojas no térreo para valorização máxima"],
   ] as const;
   return (
-    <section id="investimento" className="bg-primary py-20 text-primary-foreground">
+    <section id="investimento" className="py-20">
       <div id="projeto" className="mx-auto max-w-7xl px-5">
-        <SectionHead light eyebrow="Tese de investimento & Short Stay" title="Uma oportunidade rara para morar ou lucrar" sub="Localização, demanda e conveniência que sustentam alta ocupação e valorização." />
+        <SectionHead eyebrow="Tese de investimento & Short Stay" title="Uma oportunidade rara para morar ou lucrar" sub="Localização, demanda e conveniência que sustentam alta ocupação e valorização." />
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {items.map(([Icon, t, d]) => (
-            <div key={t} className="rounded-2xl border border-primary-foreground/10 bg-primary-foreground/5 p-7 transition hover:border-gold/60">
+            <div key={t} className="rounded-2xl border border-border bg-card p-7 shadow-sm transition hover:border-gold/60 hover:shadow-elegant">
               <Icon className="h-8 w-8 text-gold" />
               <h3 className="mt-5 font-display text-2xl font-semibold">{t}</h3>
-              <p className="mt-2 text-sm leading-relaxed opacity-75">{d}</p>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p>
             </div>
           ))}
         </div>
@@ -195,7 +248,7 @@ function Investment() {
 function VideoShowcase() {
   const [shorts, setShorts] = useState(false);
   return (
-    <section className="py-20">
+    <section className="bg-secondary py-20">
       <div className="mx-auto max-w-7xl px-5">
         <SectionHead eyebrow="Vídeo tour oficial" title="Uma Experiência Imersiva no Ilha Stay" sub="Assista ao vídeo oficial e conheça cada detalhe da arquitetura, lazer e conveniências." />
         <div className="grid gap-6 lg:grid-cols-[1fr_300px]">
@@ -222,18 +275,52 @@ function VideoShowcase() {
 }
 
 const plans = [
-  { id: "sq", tab: "Sala e Quarto", m: "28m²", title: "Sala e Quarto", d: "Sala integrada à cozinha, quarto reservado e terraço coberto de 3,5m². Máxima liquidez para locação por temporada.", tags: ["1 quarto", "Terraço 3,5m²", "Ideal short stay"] },
-  { id: "ds", tab: "Double Suítes", m: "47m²", title: "Double Suítes", d: "Duas suítes independentes garantindo total privacidade para hóspedes ou famílias.", tags: ["2 suítes", "Varanda", "Privacidade total"] },
-  { id: "gsq", tab: "Gardens Sala e Quarto", m: "48m²", title: "Gardens Sala e Quarto", d: "O charme do apartamento térreo com quintal privativo ao ar livre.", tags: ["1 quarto", "Quintal privativo", "Térreo"] },
-  { id: "gds", tab: "Gardens Double Suítes", m: "70m²", title: "Gardens Double Suítes", d: "Exclusividade máxima com 2 suítes e amplo terraço privativo.", tags: ["2 suítes", "Amplo terraço", "Exclusividade"] },
+  {
+    id: "1q-tipo", tab: "1 Quarto Tipo", m: "28m²", title: "1 Quarto Tipo", img: planta1qTipo,
+    d: "Varanda coberta, living integrado e cozinha de serviço. A planta mais compacta do empreendimento, perfeita para rentabilidade short-stay.",
+    tags: ["1 quarto", "Terraço coberto 3,5m²", "Ideal short stay"],
+    areas: ["Área privativa: 24,65m² a 25,09m²", "Terraço coberto: 3,51m²", "Total: 28,16m² a 28,60m²"],
+  },
+  {
+    id: "1q-suite", tab: "1 Quarto com Suíte", m: "35m²", title: "1 Quarto com Suíte", img: planta1qSuite,
+    d: "Circulação independente, suíte ampla e varanda. Mais conforto e privacidade para morar ou receber hóspedes.",
+    tags: ["1 suíte", "Varanda", "Circulação independente"],
+    areas: ["Área privativa: 29,70m²", "Terraço coberto: 5,35m²", "Total: 35,05m²"],
+  },
+  {
+    id: "1q-garden", tab: "1 Quarto Garden", m: "até 48m²", title: "1 Quarto Garden", img: planta1qGarden,
+    d: "Quintal privativo com terraço descoberto e espaço para hidromassagem. O charme de uma casa no térreo do resort.",
+    tags: ["1 quarto", "Quintal privativo", "Espaço p/ hidromassagem"],
+    areas: ["Área privativa: 24,65m² a 25,09m²", "Terraço descoberto: até 19,75m²", "Total: até 48,35m²"],
+  },
+  {
+    id: "double", tab: "Double Suíte Tipo", m: "47m²", title: "Double Suíte Tipo", img: plantaDouble,
+    d: "2 suítes privativas e independentes com banheiros exclusivos. Máxima flexibilidade para hóspedes ou famílias.",
+    tags: ["2 suítes", "Banheiros exclusivos", "Privacidade total"],
+    areas: ["Área privativa: 41,27m² a 42,35m²", "Terraço coberto: 5,24m²", "Total: 46,51m² a 47,59m²"],
+  },
+  {
+    id: "double-garden", tab: "Double Suíte Garden", m: "70m²", title: "Double Suíte Garden", img: plantaDoubleGarden,
+    d: "Uma verdadeira mansão térrea com mais de 23m² de jardim privativo ao ar livre e 2 suítes independentes.",
+    tags: ["2 suítes", "Jardim 23,36m²", "Exclusividade máxima"],
+    areas: ["Área privativa: 42,35m²", "Terraço descoberto: 23,36m²", "Total: 70,95m²"],
+  },
 ];
 
 function Plans({ onCta }: { onCta: () => void }) {
   return (
-    <section id="plantas" className="bg-secondary py-20">
+    <section id="plantas" className="py-20">
       <div className="mx-auto max-w-6xl px-5">
-        <SectionHead eyebrow="Plantas inteligentes" title="Do studio ao garden: a planta certa para o seu objetivo" />
-        <Tabs defaultValue="sq">
+        <SectionHead eyebrow="Plantas & Tipologias" title="Do 1 quarto ao garden: a planta certa para o seu objetivo" />
+        <div className="mx-auto mb-10 flex max-w-3xl items-center gap-4 rounded-2xl border border-gold/40 bg-gold/10 p-5">
+          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-gold text-accent-foreground shadow-gold">
+            <Fence className="h-6 w-6" />
+          </span>
+          <p className="text-sm font-medium leading-snug sm:text-base">
+            <span className="font-semibold">Exclusividade:</span> 100% das unidades possuem Varanda (Terraço Coberto), inclusive as opções de 1 quarto.
+          </p>
+        </div>
+        <Tabs defaultValue="1q-tipo">
           <TabsList className="mx-auto mb-8 flex h-auto w-full flex-wrap justify-center gap-2 bg-transparent">
             {plans.map((p) => (
               <TabsTrigger key={p.id} value={p.id} className="rounded-full border border-border bg-card px-5 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
@@ -243,23 +330,94 @@ function Plans({ onCta }: { onCta: () => void }) {
           </TabsList>
           {plans.map((p) => (
             <TabsContent key={p.id} value={p.id}>
-              <div className="grid items-center gap-8 rounded-3xl bg-card p-8 shadow-elegant md:grid-cols-[220px_1fr] md:p-12">
-                <div className="flex aspect-square flex-col items-center justify-center rounded-2xl bg-primary text-primary-foreground">
-                  <span className="font-display text-6xl font-semibold text-gold">{p.m.replace("m²", "")}</span>
-                  <span className="text-sm uppercase tracking-widest opacity-70">m² privativos</span>
+              <div className="overflow-hidden rounded-3xl bg-card shadow-elegant">
+                <div className="bg-secondary p-4 sm:p-8">
+                  <img src={p.img.url} alt={`Planta ${p.title} — Ed. Noronha e Ed. Ilhabela`} loading="lazy" className="mx-auto w-full max-w-3xl rounded-xl shadow-sm" />
                 </div>
-                <div>
-                  <h3 className="font-display text-3xl font-semibold">{p.title}</h3>
-                  <p className="mt-3 leading-relaxed text-muted-foreground">{p.d}</p>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {p.tags.map((t) => <span key={t} className="rounded-full bg-muted px-3 py-1 text-xs font-medium">{t}</span>)}
+                <div className="grid gap-8 p-8 md:grid-cols-[1fr_260px] md:p-10">
+                  <div>
+                    <h3 className="font-display text-3xl font-semibold">{p.title} <span className="text-gold">• {p.m}</span></h3>
+                    <p className="mt-3 leading-relaxed text-muted-foreground">{p.d}</p>
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {p.tags.map((t) => <span key={t} className="rounded-full bg-muted px-3 py-1 text-xs font-medium">{t}</span>)}
+                    </div>
+                    <Button variant="gold" className="mt-7 h-11 px-6" onClick={onCta}>Solicitar Apresentação e Valores</Button>
                   </div>
-                  <Button variant="gold" className="mt-7 h-11 px-6" onClick={onCta}>Solicitar Memorial e Preço desta Planta</Button>
+                  <div className="rounded-2xl bg-primary p-6 text-primary-foreground">
+                    <p className="eyebrow">Áreas</p>
+                    <ul className="mt-4 space-y-3 text-sm">
+                      {p.areas.map((a) => (
+                        <li key={a} className="flex items-start gap-2">
+                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" /> {a}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
             </TabsContent>
           ))}
         </Tabs>
+      </div>
+    </section>
+  );
+}
+
+function Features() {
+  const pillars = [
+    {
+      img: difAcabamentos, title: "Acabamento & Design", sub: "Padrão Riva em cada detalhe",
+      items: [
+        [Fence, "Varandas com guarda-corpo de alumínio e vidro"],
+        [DoorClosed, "Esquadrias de alumínio na cor preta"],
+        [KeyRound, "Fechadura eletrônica entregue nos apartamentos"],
+        [ShoppingBag, "Bancadas em granito e lazer 100% mobiliado e equipado"],
+      ],
+    },
+    {
+      img: difPadrao, title: "Conforto & Lazer Resort", sub: "Infraestrutura de resort de verdade",
+      items: [
+        [Waves, "Piscinas adulto, infantil e hidromassagem"],
+        [Flame, "Sauna a vapor"],
+        [Zap, "Vaga com previsão para carro elétrico e previsão de gerador"],
+        [TreePalm, "Gardens com previsão para grill e piscina privativa"],
+      ],
+    },
+    {
+      img: difSustentabilidade, title: "Sustentabilidade & Economia", sub: "Menor custo de condomínio",
+      items: [
+        [Recycle, "Reuso de águas pluviais"],
+        [Droplets, "Medição individual de água (menor custo de condomínio)"],
+        [Lightbulb, "Iluminação em LED nas áreas comuns"],
+        [Leaf, "Sensores de presença nos halls dos blocos"],
+      ],
+    },
+  ] as const;
+  return (
+    <section id="diferenciais" className="bg-secondary py-20">
+      <div className="mx-auto max-w-7xl px-5">
+        <SectionHead eyebrow="Diferenciais & Acabamentos" title="Três pilares que valorizam cada metro quadrado" sub="Do acabamento entregue à economia no condomínio: detalhes que fazem diferença para morar e para investir." />
+        <div className="grid gap-8 lg:grid-cols-3">
+          {pillars.map((p) => (
+            <div key={p.title} className="overflow-hidden rounded-3xl bg-card shadow-elegant">
+              <div className="relative">
+                <img src={p.img.url} alt={`Diferenciais de ${p.title}`} loading="lazy" className="aspect-[16/10] w-full object-cover object-left" />
+                <div className="absolute inset-0 bg-gradient-hero opacity-60" />
+                <div className="absolute bottom-4 left-5 text-primary-foreground">
+                  <h3 className="font-display text-2xl font-semibold">{p.title}</h3>
+                  <p className="text-xs opacity-85">{p.sub}</p>
+                </div>
+              </div>
+              <ul className="space-y-4 p-7">
+                {p.items.map(([Icon, t]) => (
+                  <li key={t} className="flex items-start gap-3 text-sm">
+                    <Icon className="mt-0.5 h-5 w-5 shrink-0 text-nature" /> {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -272,8 +430,8 @@ function Leisure() {
       [Dumbbell, "Academia panorâmica (Wellness Stay)"], [ShoppingCart, "Mini Mercado e Lavanderia (Facility Stay)"],
     ] },
     { img: pool, title: "No Térreo", sub: "Clube Aquático & Relaxamento", items: [
-      [Waves, "Piscina com Raia de 25m, Deck Molhado e Gazebos"], [Flame, "Bar da Piscina e Piscina Infantil"],
-      [Bath, "Spa, Sauna Úmida, Massagem e Espaço Beauty"], [Wifi, "Coworking completo"],
+      [Waves, "Piscina com Raia de 25m, Deck Molhado e Gazebos"], [Baby, "Bar da Piscina e Piscina Infantil"],
+      [Flame, "Spa, Sauna Úmida, Massagem e Espaço Beauty"], [Wifi, "Coworking completo"],
       [PawPrint, "Pet Place"], [Zap, "Recarga para Carro Elétrico"],
     ] },
   ] as const;
@@ -333,24 +491,112 @@ function Mall() {
 }
 
 function Location() {
-  const pts = [
-    [TreePalm, "Parque Frans Krajcberg", "1 min a pé"], [TrainFront, "BRT Ilha Pura", "a pé"],
+  const minutes = [
+    [TreePalm, "Parque Ilha Pura", "a pé"], [TrainFront, "BRT Ilha Pura", "a pé"],
     [GraduationCap, "Colégio pH", "a pé"], [Waves, "Praia da Barra", "10 min"],
-    [ShoppingBag, "Shopping Metropolitano", "15 min"], [Hospital, "Hospital Barra D'Or", "15 min"],
+    [Hospital, "Hospital Rio Barra", "5 min"],
+  ] as const;
+  const perspective = [
+    [ShoppingBag, "Shoppings", "Conexão direta com os principais shoppings da região"],
+    [Waves, "Lagoas", "Entre a Lagoa de Jacarepaguá e o litoral da Barra"],
+    [Building2, "Centro Metropolitano", "Ao lado do novo polo comercial da Barra Olímpica"],
+  ] as const;
+  const imagine = [
+    [TrendingUp, "R$ 2,7 Bi", "de investimento no Projeto Imagine"],
+    [Sparkles, "R$ 92,2 Bi", "de impacto estimado na economia"],
+    [Trophy, "Farmasi Arena", "demanda constante para aluguel por temporada"],
   ] as const;
   return (
-    <section id="localizacao" className="py-20">
+    <section id="localizacao" className="bg-secondary py-20">
       <div className="mx-auto max-w-6xl px-5">
-        <SectionHead eyebrow="Localização privilegiada" title="A 1 minuto a pé do Parque Frans Krajcberg" sub="Ilha Pura — 72 mil m² de verde — e a 10 min da Praia da Barra." />
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {pts.map(([Icon, t, d]) => (
-            <div key={t} className="flex items-center gap-4 rounded-2xl border border-border bg-card p-5">
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-nature/15 text-nature"><Icon className="h-5 w-5" /></span>
-              <div><p className="font-semibold">{t}</p><p className="text-sm text-gold">{d}</p></div>
-            </div>
-          ))}
+        <SectionHead eyebrow="Localização privilegiada" title="Barra Olímpica: o endereço que mais valoriza no Rio" sub="A vida em minutos, conexão total com a cidade e um polo de investimento bilionário ao redor." />
+
+        <div className="rounded-3xl bg-card p-8 shadow-elegant md:p-10">
+          <p className="eyebrow">Bloco 1</p>
+          <h3 className="mt-2 font-display text-3xl font-semibold">A Vida em Minutos</h3>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {minutes.map(([Icon, t, d]) => (
+              <div key={t} className="flex items-center gap-4 rounded-2xl border border-border bg-background p-5">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-nature/15 text-nature"><Icon className="h-5 w-5" /></span>
+                <div><p className="font-semibold">{t}</p><p className="text-sm text-gold">{d}</p></div>
+              </div>
+            ))}
+          </div>
         </div>
-        <p className="mt-6 flex items-center justify-center gap-2 text-sm text-muted-foreground"><MapPin className="h-4 w-4" /> Barra Olímpica, Rio de Janeiro — RJ</p>
+
+        <div className="mt-8 grid gap-8 lg:grid-cols-2">
+          <div className="rounded-3xl bg-card p-8 shadow-elegant md:p-10">
+            <p className="eyebrow">Bloco 2</p>
+            <h3 className="mt-2 font-display text-3xl font-semibold">Barra Olímpica em Perspectiva</h3>
+            <ul className="mt-6 space-y-5">
+              {perspective.map(([Icon, t, d]) => (
+                <li key={t} className="flex items-start gap-4">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold/15 text-gold"><Icon className="h-5 w-5" /></span>
+                  <div><p className="font-semibold">{t}</p><p className="text-sm text-muted-foreground">{d}</p></div>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="rounded-3xl bg-primary p-8 text-primary-foreground shadow-elegant md:p-10">
+            <p className="eyebrow">Bloco 3 • Polo de Investimento</p>
+            <h3 className="mt-2 font-display text-3xl font-semibold">Projeto Imagine</h3>
+            <ul className="mt-6 space-y-5">
+              {imagine.map(([Icon, t, d]) => (
+                <li key={t} className="flex items-start gap-4">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-gold text-accent-foreground"><Icon className="h-5 w-5" /></span>
+                  <div><p className="font-display text-xl font-semibold text-gold">{t}</p><p className="text-sm opacity-80">{d}</p></div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <p className="mt-8 flex items-center justify-center gap-2 text-sm text-muted-foreground"><MapPin className="h-4 w-4" /> Barra Olímpica, Rio de Janeiro — RJ</p>
+      </div>
+    </section>
+  );
+}
+
+const faqs = [
+  {
+    q: "Como funciona o financiamento direto com a Construtora Riva sem juros?",
+    a: "Você parcela o valor do imóvel diretamente com a incorporadora, sem banco e com taxa zero de juros durante todo o período de obras. A entrada também pode ser parcelada. Ao final da obra, o saldo pode ser quitado ou migrado para um financiamento bancário, se você preferir.",
+  },
+  {
+    q: "Posso usar o meu FGTS na compra?",
+    a: "Sim. O Ilha Stay permite a possibilidade de uso do FGTS, tanto para compor a entrada quanto para amortizar o saldo, conforme as regras da Caixa e o enquadramento do comprador. Nossa equipe faz a análise do seu caso sem compromisso.",
+  },
+  {
+    q: "É possível compor renda com outras pessoas?",
+    a: "Sim. É possível fazer composição de renda entre até 3 pessoas, o que facilita a aprovação e amplia as condições de pagamento — ideal para casais, familiares ou sócios investidores.",
+  },
+  {
+    q: "O apartamento pode ser explorado com locação por temporada (short stay)?",
+    a: "Sim. O Ilha Stay foi concebido como Home Stay: você pode morar ou explorar a locação de temporada. A localização ao lado do Parque Olímpico, da Farmasi Arena e do Riocentro sustenta demanda o ano todo, e a infraestrutura de resort (rooftop, piscinas, mall integrado) maximiza a diária média e a ocupação.",
+  },
+  {
+    q: "Todas as unidades realmente têm varanda?",
+    a: "Sim. 100% das unidades possuem varanda com terraço coberto, inclusive as opções de 1 quarto — um diferencial raro em plantas compactas e que valoriza tanto o uso próprio quanto a locação.",
+  },
+  {
+    q: "Quando começam as vendas e como garantir a tabela de abertura?",
+    a: "O empreendimento está em pré-lançamento. Quem se pré-cadastra recebe a tabela de abertura e as condições exclusivas antes do público geral, com prioridade na escolha das unidades. Basta preencher o formulário desta página ou chamar no WhatsApp.",
+  },
+];
+
+function Faq() {
+  return (
+    <section id="faq" className="py-20">
+      <div className="mx-auto max-w-3xl px-5">
+        <SectionHead eyebrow="Dúvidas frequentes" title="Perguntas & Respostas" sub="Financiamento sem juros, FGTS, composição de renda e locação por temporada." />
+        <Accordion type="single" collapsible className="w-full">
+          {faqs.map((f, i) => (
+            <AccordionItem key={f.q} value={`item-${i}`} className="rounded-xl border border-border bg-card px-5 [&:not(:last-child)]:mb-3">
+              <AccordionTrigger className="text-left font-semibold hover:text-gold hover:no-underline">{f.q}</AccordionTrigger>
+              <AccordionContent className="leading-relaxed text-muted-foreground">{f.a}</AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
       </div>
     </section>
   );
@@ -375,7 +621,7 @@ function FinalForm() {
         <div>
           <Sparkles className="h-8 w-8 text-gold" />
           <h2 className="mt-4 font-display text-4xl font-semibold sm:text-5xl">Receba a apresentação completa e a tabela de abertura</h2>
-          <p className="mt-4 text-muted-foreground">Cadastre-se agora e tenha acesso antecipado às melhores unidades e condições de lançamento.</p>
+          <p className="mt-4 text-muted-foreground">Cadastre-se agora e tenha acesso antecipado às melhores unidades e condições de lançamento — incluindo o financiamento direto sem juros com a Riva.</p>
         </div>
         <div className="rounded-3xl bg-card p-8 shadow-elegant">
           <LeadForm full cta="Quero Receber a Tabela" />
@@ -392,7 +638,7 @@ function Footer() {
         <p className="font-display text-xl opacity-100">Ilha Stay Home Resort • Riva</p>
         <p>Realização: Construtora Riva — Grupo Direcional. Imagens meramente ilustrativas.</p>
         <p>Empreendimento em fase de pré-lançamento; incorporação a ser registrada no Cartório de Registro de Imóveis (RI) competente. Vendas somente após o registro.</p>
-        <p>CRECI: ____________</p>
+        <p className="pt-2 text-sm font-medium opacity-100">Atendimento Exclusivo e Credenciado • Imoverso Imobiliária • CRECI-RJ: 8960</p>
       </div>
     </footer>
   );
