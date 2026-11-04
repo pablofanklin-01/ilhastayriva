@@ -24,6 +24,11 @@ import planta1qGarden from "@/assets/planta-1quarto-garden.png.asset.json";
 import plantaDouble from "@/assets/planta-double-suite.png.asset.json";
 import plantaDoubleGarden from "@/assets/planta-double-suite-garden.png.asset.json";
 
+// Imagens de Localização
+import locMinutos from "@/assets/localizacao-minutos.jpg";
+import locPerspectiva from "@/assets/localizacao-perspectiva.jpg";
+import locImagine from "@/assets/localizacao-imagine.jpg";
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -71,7 +76,7 @@ function Index() {
       <a
         href={waLink}
         target="_blank" rel="noreferrer" aria-label="Falar no WhatsApp"
-        className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-nature text-primary-foreground shadow-elegant transition-transform hover:scale-110"
+        className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-600 text-white shadow-lg transition-transform hover:scale-110"
       >
         <MessageCircle className="h-7 w-7" />
       </a>
@@ -511,43 +516,61 @@ function Location() {
       <div className="mx-auto max-w-6xl px-5">
         <SectionHead eyebrow="Localização privilegiada" title="Barra Olímpica: o endereço que mais valoriza no Rio" sub="A vida em minutos, conexão total com a cidade e um polo de investimento bilionário ao redor." />
 
-        <div className="rounded-3xl bg-card p-8 shadow-elegant md:p-10">
-          <p className="eyebrow">Bloco 1</p>
-          <h3 className="mt-2 font-display text-3xl font-semibold">A Vida em Minutos</h3>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {minutes.map(([Icon, t, d]) => (
-              <div key={t} className="flex items-center gap-4 rounded-2xl border border-border bg-background p-5">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-nature/15 text-nature"><Icon className="h-5 w-5" /></span>
-                <div><p className="font-semibold">{t}</p><p className="text-sm text-gold">{d}</p></div>
-              </div>
-            ))}
+        {/* Bloco 1: A Vida em Minutos */}
+        <div className="overflow-hidden rounded-3xl bg-card shadow-elegant">
+          <div className="relative aspect-[21/9] w-full overflow-hidden">
+            <img src={locMinutos} alt="A Vida em Minutos - Parque Ilha Pura e Conexões" className="h-full w-full object-cover" />
+          </div>
+          <div className="p-8 md:p-10">
+            <p className="eyebrow">Mobilidade & Conveniência</p>
+            <h3 className="mt-2 font-display text-3xl font-semibold">A Vida em Minutos</h3>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {minutes.map(([Icon, t, d]) => (
+                <div key={t} className="flex items-center gap-4 rounded-2xl border border-border bg-background p-5">
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-emerald-600/15 text-emerald-600"><Icon className="h-5 w-5" /></span>
+                  <div><p className="font-semibold">{t}</p><p className="text-sm text-gold">{d}</p></div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
+        {/* Bloco 2 e 3: Perspectiva e Projeto Imagine */}
         <div className="mt-8 grid gap-8 lg:grid-cols-2">
-          <div className="rounded-3xl bg-card p-8 shadow-elegant md:p-10">
-            <p className="eyebrow">Bloco 2</p>
-            <h3 className="mt-2 font-display text-3xl font-semibold">Barra Olímpica em Perspectiva</h3>
-            <ul className="mt-6 space-y-5">
-              {perspective.map(([Icon, t, d]) => (
-                <li key={t} className="flex items-start gap-4">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold/15 text-gold"><Icon className="h-5 w-5" /></span>
-                  <div><p className="font-semibold">{t}</p><p className="text-sm text-muted-foreground">{d}</p></div>
-                </li>
-              ))}
-            </ul>
+          <div className="overflow-hidden rounded-3xl bg-card shadow-elegant">
+            <div className="relative aspect-video w-full overflow-hidden">
+              <img src={locPerspectiva} alt="Barra Olímpica em Perspectiva Aérea" className="h-full w-full object-cover" />
+            </div>
+            <div className="p-8 md:p-10">
+              <p className="eyebrow">Localização Estratégica</p>
+              <h3 className="mt-2 font-display text-3xl font-semibold">Barra Olímpica em Perspectiva</h3>
+              <ul className="mt-6 space-y-5">
+                {perspective.map(([Icon, t, d]) => (
+                  <li key={t} className="flex items-start gap-4">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold/15 text-gold"><Icon className="h-5 w-5" /></span>
+                    <div><p className="font-semibold">{t}</p><p className="text-sm text-muted-foreground">{d}</p></div>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div className="rounded-3xl bg-primary p-8 text-primary-foreground shadow-elegant md:p-10">
-            <p className="eyebrow">Bloco 3 • Polo de Investimento</p>
-            <h3 className="mt-2 font-display text-3xl font-semibold">Projeto Imagine</h3>
-            <ul className="mt-6 space-y-5">
-              {imagine.map(([Icon, t, d]) => (
-                <li key={t} className="flex items-start gap-4">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-gold text-accent-foreground"><Icon className="h-5 w-5" /></span>
-                  <div><p className="font-display text-xl font-semibold text-gold">{t}</p><p className="text-sm opacity-80">{d}</p></div>
-                </li>
-              ))}
-            </ul>
+
+          <div className="overflow-hidden rounded-3xl bg-primary text-primary-foreground shadow-elegant">
+            <div className="relative aspect-video w-full overflow-hidden">
+              <img src={locImagine} alt="Parque Olímpico e Projeto Imagine" className="h-full w-full object-cover" />
+            </div>
+            <div className="p-8 md:p-10">
+              <p className="eyebrow">Polo de Investimento</p>
+              <h3 className="mt-2 font-display text-3xl font-semibold text-gold">Projeto Imagine</h3>
+              <ul className="mt-6 space-y-5">
+                {imagine.map(([Icon, t, d]) => (
+                  <li key={t} className="flex items-start gap-4">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-gold text-accent-foreground"><Icon className="h-5 w-5" /></span>
+                    <div><p className="font-display text-xl font-semibold text-gold">{t}</p><p className="text-sm opacity-80">{d}</p></div>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 
