@@ -25,11 +25,12 @@ import plantaDouble from "@/assets/planta-double-suite.png.asset.json";
 import plantaDoubleGarden from "@/assets/planta-double-suite-garden.png.asset.json";
 
 // Imagens de Localização
-import localizacao01 from "@/assets/localizacaostay01.png";
-import localizacao02 from "@/assets/localizacaostay02.png";
-import localizacao03 from "@/assets/localizacaostay03.png";
-import localizacao04 from "@/assets/localizacaostay04.png";
-import localizacao05 from "@/assets/localizacaostay05.png";
+
+import localizacaostay01 from "@/assets/localizacaostay01.png";
+import localizacaostay02 from "@/assets/localizacaostay02.png";
+import localizacaostay03 from "@/assets/localizacaostay03.png";
+import localizacaostay04 from "@/assets/localizacaostay04.png";
+import localizacaostay05 from "@/assets/localizacaostay05.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -521,7 +522,7 @@ function Location() {
         {/* Bloco 1: A Vida em Minutos */}
         <div className="overflow-hidden rounded-3xl bg-card shadow-elegant">
           <div className="relative aspect-[21/9] w-full overflow-hidden">
-            <img src={locMinutos} alt="A Vida em Minutos - Parque Ilha Pura e Conexões" className="h-full w-full object-cover" />
+            <img src={localizacaostay03} alt="A Vida em Minutos - Parque Ilha Pura e Conexões" className="h-full w-full object-cover" />
           </div>
           <div className="p-8 md:p-10">
             <p className="eyebrow">Mobilidade & Conveniência</p>
@@ -541,7 +542,7 @@ function Location() {
         <div className="mt-8 grid gap-8 lg:grid-cols-2">
           <div className="overflow-hidden rounded-3xl bg-card shadow-elegant">
             <div className="relative aspect-video w-full overflow-hidden">
-              <img src={locPerspectiva} alt="Barra Olímpica em Perspectiva Aérea" className="h-full w-full object-cover" />
+              <img src={localizacaostay02} alt="Barra Olímpica em Perspectiva Aérea" className="h-full w-full object-cover" />
             </div>
             <div className="p-8 md:p-10">
               <p className="eyebrow">Localização Estratégica</p>
@@ -559,7 +560,7 @@ function Location() {
 
           <div className="overflow-hidden rounded-3xl bg-primary text-primary-foreground shadow-elegant">
             <div className="relative aspect-video w-full overflow-hidden">
-              <img src={locImagine} alt="Parque Olímpico e Projeto Imagine" className="h-full w-full object-cover" />
+              <img src={localizacaostay01} alt="Parque Olímpico e Projeto Imagine" className="h-full w-full object-cover" />
             </div>
             <div className="p-8 md:p-10">
               <p className="eyebrow">Polo de Investimento</p>
