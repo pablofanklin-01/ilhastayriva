@@ -28,9 +28,9 @@ export function LeadForm({
 
   function submit(e: React.FormEvent) {
     e.preventDefault();
-    if (name.trim().length < 2) return toast.error("Informe seu nome.");
-    if (phone.replace(/\D/g, "").length < 10) return toast.error("Informe um WhatsApp válido com DDD.");
-    if (full && !/^\S+@\S+\.\S+$/.test(email)) return toast.error("Informe um e-mail válido.");
+    if (name.trim().length < 2) { toast.error("Informe seu nome."); return; }
+    if (phone.replace(/\D/g, "").length < 10) { toast.error("Informe um WhatsApp válido com DDD."); return; }
+    if (full && !/^\S+@\S+\.\S+$/.test(email)) { toast.error("Informe um e-mail válido."); return; }
     toast.success("Cadastro confirmado! Nossa equipe enviará a apresentação e tabela em instantes.");
     setName("");
     setPhone("");
