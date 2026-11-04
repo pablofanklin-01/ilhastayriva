@@ -25,11 +25,11 @@ import plantaDouble from "@/assets/planta-double-suite.png.asset.json";
 import plantaDoubleGarden from "@/assets/planta-double-suite-garden.png.asset.json";
 
 // Imagens de Localização
-import localizacao01 from "@/assets/localizaçãostay01.png";
-import localizacao02 from "@/assets/localizaçãostay02.png";
-import localizacao03 from "@/assets/localizaçãostay03.png";
-import localizacao04 from "@/assets/localizaçãostay04.png";
-import localizacao05 from "@/assets/localizaçãostay05.png";
+import localizacao01 from "@/assets/localizacaostay01.png";
+import localizacao02 from "@/assets/localizacaostay02.png";
+import localizacao03 from "@/assets/localizacaostay03.png";
+import localizacao04 from "@/assets/localizacaostay04.png";
+import localizacao05 from "@/assets/localizacaostay05.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
